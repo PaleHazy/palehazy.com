@@ -12,4 +12,4 @@ function useColorProvider() {
     const ctx = useContext(color_context);
     return ctx;
 }
-export {ColorProvider}
+export {ColorProvider, useColorProvider}

@@ -1,3 +1,4 @@
+import { useColorProvider } from 'contexts/Color';
 import { getSession } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
 import { kittyBase64 } from './kitty';
@@ -13,6 +14,7 @@ type rgb = {
     blue: number
 }
 const Canvas = (props: any) => {
+    const [,set] = useColorProvider()
     const canvasRef = useRef<HTMLCanvasElement>();
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -23,11 +25,12 @@ const Canvas = (props: any) => {
             const img = new Image();
             img.src = kittyBase64;
             const ctx = canvas.getContext('2d');
+            set
             ctx!.clearRect(0,0,canvas.width, canvas.height)
-            canvas.width = img.width;
-            canvas.height = img.height;
-
+            
             img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
                 ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
                 const pixels = ctx?.getImageData(
                     0,
@@ -212,3 +215,5 @@ export async function getServerSideProps(ctx: any) {
     };
 }
 export default Canvas;
+
+
