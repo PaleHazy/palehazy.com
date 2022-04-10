@@ -7,7 +7,6 @@ import clientPromise from "../../../lib-api/db/mongodb"
 // For more information on each option (and a full list of options) go to
 
 export default async function auth(req: any, res:any) {
-const cp = (await clientPromise).db('next-auth-palehazy')
 return await NextAuth(req, res, {
   // https://next-auth.js.org/configuration/providers
   providers: [
@@ -62,10 +61,7 @@ return await NextAuth(req, res, {
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
   // https://next-auth.js.org/configuration/databases
   //
-  adapter: MongoDBAdapter({
-    db: () => cp,
-    ObjectId,
-  }),
+  adapter: MongoDBAdapter(clientPromise),
   // Notes:
   // * You must install an appropriate node_module for your database
   // * The Email provider requires a database (OAuth providers do not)
@@ -132,12 +128,12 @@ return await NextAuth(req, res, {
       return true;
     },
 
-    // async redirect({ url, baseUrl }) {
-    //   console.log("[REDIRECT CALLBACK]");
-    //   console.log(url, baseUrl);
+    async redirect({ url, baseUrl }) {
+      console.log("[REDIRECT CALLBACK]");
+      console.log(url, baseUrl);
 
-    //   return baseUrl;
-    // },
+      return baseUrl;
+    },
     async session({ session, user, token }) {
       console.log("[SESSION CALLBACK]");
       console.log(session, user, token);
@@ -160,6 +156,8 @@ return await NextAuth(req, res, {
 
   // Enable debug messages in the console if you are having problems
   debug: true,
+  
+
 });
 
 }

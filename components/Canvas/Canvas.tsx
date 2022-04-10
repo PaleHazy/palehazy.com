@@ -207,13 +207,7 @@ const Canvas = (props: any) => {
     );
 };
 
-export async function getServerSideProps(ctx: any) {
-    return {
-        props: {
-            session: await getSession(ctx),
-        },
-    };
-}
+
 export default Canvas;
 
 
