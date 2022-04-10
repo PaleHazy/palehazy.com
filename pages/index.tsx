@@ -14,8 +14,8 @@ const Home: NextPage = (props: any) => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Raffl</title>
-                <meta name="description" content="Win Rare Cards in a Raffle" />
+                <title>palehazy</title>
+                <meta name="description" content="Javascript React Professional" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

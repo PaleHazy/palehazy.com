@@ -7,7 +7,7 @@ import clientPromise from "../../../lib-api/db/mongodb"
 // For more information on each option (and a full list of options) go to
 
 export default async function auth(req: any, res:any) {
-const cp = (await clientPromise).db('next-auth-raffl')
+const cp = (await clientPromise).db('next-auth-palehazy')
 return await NextAuth(req, res, {
   // https://next-auth.js.org/configuration/providers
   providers: [
