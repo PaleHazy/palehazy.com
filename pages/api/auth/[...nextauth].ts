@@ -78,7 +78,6 @@ return await NextAuth(req, res, {
     // Use JSON Web Tokens for session instead of database sessions.
     // This option can be used with or without a database for users/accounts.
     // Note: `jwt` is automatically set to `true` if no database is specified.
-    jwt: true,
 
     // Seconds - How long until an idle session expires and is no longer valid.
     maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -95,7 +94,6 @@ return await NextAuth(req, res, {
   jwt: {
     // A secret to use for key generation (you should set this explicitly)
     // secret: process.env.JWT_SIGNING_PRIVATE_KEY,
-    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
     // Set to true to use encryption (default: false)
     // encryption: true,
     //   verificationOptions: {
@@ -160,7 +158,6 @@ return await NextAuth(req, res, {
 
   // You can set the theme to 'light', 'dark' or use 'auto' to default to the
   // whatever prefers-color-scheme is set to in the browser. Default is 'auto'
-  theme: "light",
 
   // Enable debug messages in the console if you are having problems
   debug: true,
