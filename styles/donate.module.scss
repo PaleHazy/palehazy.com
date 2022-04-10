@@ -1,0 +1,155 @@
+@mixin multi-shadow {
+    -webkit-box-shadow: 5px 5px 0px 0px #ed7728, 10px 10px 0px 0px #7fff5f,
+        15px 15px 0px 0px #a1d8ff, 20px 20px 0px 0px #cae6ff,
+        25px 25px 0px 0px #e1eeff, 5px 5px 15px 9px rgba(0, 0, 0, 0);
+    box-shadow: 5px 5px 0px 0px #ed7728, 10px 10px 0px 0px #7fff5f,
+        15px 15px 0px 0px #ffa1db, 20px 20px 0px 0px #eacaff,
+        25px 25px 0px 0px #d5d829, 5px 5px 15px 9px rgba(0, 0, 0, 0);
+}
+
+@mixin motion-div {
+    width: 100%;
+
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+}
+@mixin sensitive-input-stripe-select {
+    div {
+        width: 100%;
+        box-shadow: 0 0 3px 1px rgba(18, 0, 36, 0.9304096638655462);
+        &:after {
+            content: '\00a0';
+            background: rgb(18, 0, 36);
+            background: linear-gradient(
+                38deg,
+                rgba(18, 0, 36, 0.9304096638655462) 0%,
+                rgba(26, 255, 247, 1) 9%,
+                rgba(249, 12, 225, 1) 14%,
+                rgba(201, 19, 67, 1) 20%,
+                rgba(44, 208, 39, 1) 28%,
+                rgba(208, 223, 33, 1) 32%,
+                rgba(40, 193, 204, 1) 38%,
+                rgba(128, 47, 222, 1) 43%,
+                rgba(164, 27, 210, 1) 48%,
+                rgba(214, 47, 197, 1) 54%,
+                rgba(50, 201, 46, 1) 61%,
+                rgba(214, 38, 113, 1) 68%,
+                rgba(172, 174, 59, 1) 75%,
+                rgba(193, 62, 94, 1) 81%,
+                rgba(62, 40, 218, 1) 91%,
+                rgba(217, 44, 104, 1) 100%
+            );
+            background-size: 110% 2px;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+    }
+}
+// donate.module.scss
+.main {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: rgb(63, 94, 251);
+    background: radial-gradient(
+        circle,
+        rgba(63, 94, 251, 1) 0%,
+        rgba(252, 70, 107, 1) 100%
+    );
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .card {
+        width: 80%;
+        height: 80%;
+        background-color: rgba(18, 0, 36, 0.9304096638655462);
+        border-radius: 5%;
+        display: grid;
+        grid-auto-flow: row;
+        grid-auto-rows: 13%;
+        grid-template-columns: 80%;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 0 0 rgba(18, 0, 36, 0.9304096638655462);
+
+        .motionsCard {
+            @include motion-div();
+            label {
+                color: white;
+                width: 100%;
+                font-size: 20px;
+                white-space: nowrap;
+                .sCard {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    @include multi-shadow();
+                    @include sensitive-input-stripe-select();
+                }
+            }
+        }
+        .motionexp {
+            @include motion-div();
+            label {
+                color: white;
+                width: 30%;
+                font-size: 20px;
+                white-space: nowrap;
+                .exp {
+                    height: 100%;
+                    width: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    @include multi-shadow();
+                    @include sensitive-input-stripe-select();
+                }
+            }
+        }
+        .motionsec {
+            @include motion-div();
+            label {
+                color: white;
+                width: 30%;
+                font-size: 20px;
+                white-space: nowrap;
+                .sec {
+                    height: 100%;
+                    width: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    @include multi-shadow();
+                    @include sensitive-input-stripe-select();
+                }
+            }
+        }
+       input {
+           width: 20%;
+           justify-self: center;
+       }
+        button {
+            justify-self: center;
+            align-self: center;
+            width: 50%;
+            height: 60%;
+        }
+    }
+    .processingSvg{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        width: 80px;
+        height: 80px;
+    }
+}
