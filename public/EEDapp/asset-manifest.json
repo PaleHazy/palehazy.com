@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.36e4ae7d.chunk.css",
+    "main.js": "/static/js/main.d5bb326f.chunk.js",
+    "main.js.map": "/static/js/main.d5bb326f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c543d50e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c543d50e.js.map",
+    "static/js/2.1d1f7f6f.chunk.js": "/static/js/2.1d1f7f6f.chunk.js",
+    "static/js/2.1d1f7f6f.chunk.js.map": "/static/js/2.1d1f7f6f.chunk.js.map",
+    "static/js/3.62d80f7f.chunk.js": "/static/js/3.62d80f7f.chunk.js",
+    "static/js/3.62d80f7f.chunk.js.map": "/static/js/3.62d80f7f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.36e4ae7d.chunk.css.map": "/static/css/main.36e4ae7d.chunk.css.map",
+    "static/js/2.1d1f7f6f.chunk.js.LICENSE.txt": "/static/js/2.1d1f7f6f.chunk.js.LICENSE.txt",
+    "static/media/Home.8e9b32fd.svg": "/static/media/Home.8e9b32fd.svg",
+    "static/media/dapp.css": "/static/media/token-rewards.5f403a97.png",
+    "static/media/book.6d6a0e2a.svg": "/static/media/book.6d6a0e2a.svg",
+    "static/media/App.css": "/static/media/homepage-panel-bg.7fa10517.png",
+    "static/media/chart.387f033f.svg": "/static/media/chart.387f033f.svg",
+    "static/media/hamburger.efa69a5f.svg": "/static/media/hamburger.efa69a5f.svg",
+    "static/media/header-logo-3.15a22ed5.png": "/static/media/header-logo-3.15a22ed5.png",
+    "static/media/info.46fffd89.svg": "/static/media/info.46fffd89.svg",
+    "static/media/map.93f30cbe.svg": "/static/media/map.93f30cbe.svg",
+    "static/media/shield.0b204b0f.svg": "/static/media/shield.0b204b0f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c543d50e.js",
+    "static/js/2.1d1f7f6f.chunk.js",
+    "static/css/main.36e4ae7d.chunk.css",
+    "static/js/main.d5bb326f.chunk.js"
+  ]
+}

@@ -29,9 +29,21 @@
    canvas {
      max-width: 100%;
      max-height: 100%;
-
+    filter: hue-rotate(180deg) contrast(1);
+    animation-name: color-rotate;
+    animation-duration: 5s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
    }
-  
+}
+@keyframes color-rotate {
+  0% {
+    filter: hue-rotate(360deg);
+  }
+  100% {
+    filter: hue-rotate(0deg)
+  }
 }
 .colorPicker {
   position: absolute;

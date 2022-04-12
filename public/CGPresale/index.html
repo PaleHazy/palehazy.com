@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+        <title>Chain Guard</title>
+
+        <link rel="icon" type="image/png" href="images/logo-main.png" />
+
+        <link rel="stylesheet" href="build/bundle.css" />
+        <script defer src="build/bundle.js"></script>
+
+    </head>
+    <body>
+		<div id="particles-js"></div>
+        <noscript>Please enable JavaScript to view this application.</noscript>
+    </body>
+	<script src="images/particles.min.js"></script>
+	<script>
+		particlesJS.load("particles-js", "images/particles.json", function () {
+			console.log("callback - particles-js config loaded");
+		});
+	</script>
+	<style>
+		#particles-js {
+			height: 100vh;
+			width: 100vw;
+			pointer-events: none;
+			position: fixed;
+		}
+	</style>
+</html>

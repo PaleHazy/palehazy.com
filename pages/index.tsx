@@ -58,7 +58,11 @@ const Home: NextPage = (props: any) => {
                         <h3>
                             Take a look at some websites I made for some people
                         </h3>
-                        <button>Show Sites</button>
+                        
+                        <a href='CGPresale/index.html' target="_blank">ChainGuard Presale</a>
+                        <a href='EELanding/index.html' target="_blank">EagleEye Landing</a>
+                        <a href='EEDapp/index.html' target="_blank">EagleEye Dapp</a>
+                        <a href='https://chainguard.online' target="_blank" rel="noreferrer">ChainGuard Dapp</a>
                     </div>
                 </section>
             </main>

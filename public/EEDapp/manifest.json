@@ -1,0 +1,15 @@
+{
+  "short_name": "EagleEyeToken Dapp",
+  "name": "Eagle Eye Token - No scams can escape the Eagle's Eyes",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "309 x 302",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
