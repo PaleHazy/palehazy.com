@@ -58,6 +58,9 @@ const Home: NextPage = (props: any) => {
                         <h3>
                             Take a look at some websites I made for some people
                         </h3>
+                        <h3>
+                            ALL sites here are mobile responsive
+                        </h3>
                         
                         <a href='CGPresale/index.html' target="_blank">ChainGuard Presale</a>
                         <a href='EELanding/index.html' target="_blank">EagleEye Landing</a>
