@@ -5,11 +5,12 @@ import styles from '../styles/Home.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Canvas from '@/components/Canvas/Canvas';
-import { ColorProvider } from 'contexts/Color';
+import { ColorProvider, useColorProvider } from 'contexts/Color';
 const Home: NextPage = (props: any) => {
     const { data, status } = useSession();
     const router = useRouter();
     const canvasRef = useRef();
+
     useEffect(() => {}, []);
     return (
         <div className={styles.container}>
@@ -23,7 +24,7 @@ const Home: NextPage = (props: any) => {
                 <section className={styles.left}>
                     <ColorProvider>
                     <Canvas />
-                    <div className={styles.colorPicker}></div>
+                    <ColorChoose/>
                     </ColorProvider>
                 </section>
 
@@ -76,7 +77,14 @@ const Home: NextPage = (props: any) => {
         </div>
     );
 };
-
+const ColorChoose = () => {
+    const [s,d] = useColorProvider()
+    return <div className={styles.colorPicker}>
+    <button onClick={() => {
+        d({type: "SET_FILTER", payload: "blue"})
+    }}>Change Color</button>
+    </div>
+    }
 export async function getServerSideProps(ctx: any) {
     return {
         props: {

@@ -16,18 +16,19 @@ type rgb = {
     blue: number;
 };
 const Canvas = (props: any) => {
-    const [, set] = useColorProvider();
+    const [cState, set] = useColorProvider();
     const canvasRef = useRef<HTMLCanvasElement>();
     useEffect(() => {
         const canvas = canvasRef.current;
         const particlesArray: any[] = [];
         const numberOfParticles = 5000;
         const mappedImage: any[] = [];
+        let animationFrameId: number;
         if (canvas) {
             const img = new Image();
             img.src = kittyBase64;
             const ctx = canvas.getContext('2d');
-            set;
+            
             ctx!.clearRect(0, 0, canvas.width, canvas.height);
 
             img.onload = () => {
@@ -167,7 +168,12 @@ const Canvas = (props: any) => {
                             green,
                             blue,
                         };
-                        // this.blueFilter(rgb);
+                        switch(cState.filter) {
+                            case 'blue' : 
+                            this.blueFilter(rgb);
+                            break;
+                            default: break;
+                        }
                         return `rgb(${rgb.red},${rgb.green},${rgb.blue})`;
                     }
                     draw() {
@@ -205,12 +211,16 @@ const Canvas = (props: any) => {
                             particlesArray[i].draw();
                         }
                     }
-                    requestAnimationFrame(animate);
+                    return requestAnimationFrame(animate);
                 };
-                animate();
+                animationFrameId = animate();
             };
         }
-    }, [props.filter]);
+        return () => {
+            window.cancelAnimationFrame(animationFrameId)
+        }
+    
+    }, [cState.filter]);
     return (
         <canvas
             height={473}
