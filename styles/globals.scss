@@ -14,3 +14,16 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.sol  {
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.sol  div:nth-child(3){
+  display: flex;
+  flex-direction: column;
+}
+.sol a  {
+  color: rgb(72, 134, 214);
+}
