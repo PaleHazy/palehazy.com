@@ -55,7 +55,7 @@ const Home: NextPage = (props: any) => {
                             Donate
                         </button>
                         <h3>Too soon ? sorry..</h3>
-                        <h3>I am Austin Palazzesi, I like to go by palehazy</h3>
+                        <h3>I am Austin, I like to go by palehazy</h3>
                         <h3>
                             Take a look at some websites I made for some people
                         </h3>
