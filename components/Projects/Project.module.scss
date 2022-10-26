@@ -1,0 +1,19 @@
+.project {
+
+  height: 225px;
+  width: 300px;
+
+  background: rgb(104, 194, 84);
+
+  padding: 10px;
+}
+
+.projectsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}

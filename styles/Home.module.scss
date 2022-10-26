@@ -1,23 +1,23 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: black;
+  width: 90%;
+  margin: auto;  background: black;
   color: white;
+  
 }
 
 .main {
-  padding: 0rem 0;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 100%;
-  width: 90%;
-  height: 90%;
+  padding: 0 0.5rem;
+
+  width: 100%;
+  height: 100%;
+  section {
+    width: 100%;
+  }
+}
+
+.hero {
+  height: 100vh;
 }
 .left {
   height: 100%;
@@ -116,7 +116,6 @@
   justify-content: center;
   flex-wrap: wrap;
   max-width: 800px;
-  margin-top: 3rem;
 }
 
 .card {

@@ -1,0 +1,26 @@
+.techIcon {
+  height: 100px;
+  width: 100px;
+
+  background-color: rgb(199, 94, 94);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 10px;
+
+  margin: 10px;
+  padding: 3px;
+}
+
+.techStack {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+}
