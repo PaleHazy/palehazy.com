@@ -11,7 +11,7 @@ export function Project({ name, url, description }: ProjectProps) {
         <div className={scss.project}>
           <h3>
 
-            <a href={url} target="_blank">
+            <a href={url} target="_blank" rel="noreferrer">
                 {name}
             </a>
           </h3>
