@@ -2,7 +2,8 @@ import { Collection, MongoClient } from 'mongodb';
 import { DatabaseUser } from 'interfaces-defenitions/DatabaseUser';
 import clientPromise from './mongodb';
 export const USERS_COLLECTION = 'users';
-export const DATABASE = 'next-auth-palehzy';
+// export const DATABASE = 'next-auth-palehzy';
+export const DATABASE = 'myFirstDatabase';
 
 interface UserCollectionCallback<T = any> {
     (userCollection: Collection<DatabaseUser>): Promise<DatabaseUser | null>;
