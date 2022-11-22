@@ -1,2 +1,1 @@
-1. Finish setting up stripe customer creatin and retrieval routes 
-2. convert stuff to classes
+-- setup styling for subscription page

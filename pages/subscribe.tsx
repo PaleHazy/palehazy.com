@@ -13,6 +13,7 @@ import {
     useElements,
     useStripe,
 } from '@stripe/react-stripe-js';
+import { SubscribeCard } from '@/components/SubscribeCard/SubscribeCard';
 
 const Donate: NextPage = (props: any) => {
     const { data, status } = useSession();
@@ -37,88 +38,36 @@ const Donate: NextPage = (props: any) => {
         }
     }, [succesful]);
     return (
-        <>
-            {prices.map((price) => {
+        <main 
+            style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                height: "100vh",
+                width: "100vw",
+                padding: "0 20vw",
+            }}
+        >
+            {prices.sort((a,b) => a.unit_amount < b.unit_amount ? -1 : 1).map((price) => {
                 return (
-                    <div className={styles.container}>
-                        <SubBox
-                            body="by yo shit over here"
+                    
+                        <SubscribeCard
+                            key={price.id}
+                            items={["by yo shit over here"]}
                             title={price.product.name}
                             amount={price.unit_amount / 100}
                             priceId={price.id}
                         />
-                    </div>
+                    
                 );
             })}
-        </>
+        </main>
     );
 };
 
-interface SubBoxProps {
-    title: string;
-    icon?: string;
-    body: string;
-    amount: number;
-    priceId: string;
-}
 
-function SubBox(props: SubBoxProps) {
-    const router = useRouter();
 
-    return (
-        <div className={styles.subBox}>
-            <SubBoxHeader>{props.title}</SubBoxHeader>
 
-            <SubBoxIcon />
-
-            <SubBoxBody>{props.body}</SubBoxBody>
-            <h2>Price: {props.amount}</h2>
-            <SubBoxFooter
-                onSubscribe={async () => {
-                    console.log('priceId', props.priceId);
-                    const res = await fetch('/api/create-subscription', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            priceId: props.priceId,
-                        }),
-                    });
-                    const { subscriptionId, clientSecret } = await res.json();
-                    console.log(subscriptionId, clientSecret);
-                    router.push({ 
-                        query: {
-                            subscriptionId,
-                            clientSecret,
-                        
-                        },
-                        pathname: '/checkout',
-                    });
-                }}
-            />
-        </div>
-    );
-}
-
-function SubBoxHeader(props: PropsWithChildren<{}>) {
-    return <h4>{props.children}</h4>;
-}
-function SubBoxIcon() {
-    return <div></div>;
-}
-function SubBoxBody(props: PropsWithChildren<{}>) {
-    return (
-        <div>
-            <p>{props.children}</p>
-        </div>
-    );
-}
-
-function SubBoxFooter(props: { onSubscribe: () => void }) {
-    return (
-        <div>
-            <button onClick={props.onSubscribe}>Subscribe</button>
-        </div>
-    );
-}
 export async function getServerSideProps(ctx: any) {
     return {
         props: {

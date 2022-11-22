@@ -1,10 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 import { getSession, signIn, signOut, useSession } from 'next-auth/react';
 import styles from '../styles/Home.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Canvas from '@/components/Canvas/Canvas';
+import BGRain from '@/components/BGRain/BGRain';
 import { ColorProvider, useColorProvider } from 'contexts/Color';
 import { Project, ProjectsContainer } from '@/components/Projects/Project';
 import { TechIcon, TechStack } from '@/components/Techs/Techs';
@@ -26,8 +28,21 @@ const Home: NextPage = (props: any) => {
             </Head>
 
             <main className={styles.main}>
-                <section className={styles.hero} id="hero">
-                    <h1 className={styles.title}>palehazy</h1>
+                <section className={styles.hero} style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }} id="hero">
+                    
+                    <div style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+
+                    }}>     
+                    <BGRain />               
+                    <Canvas/>
+                    </div>
                 </section>
                 <section id="oldprojects">
                     <h2>Past Projects</h2>

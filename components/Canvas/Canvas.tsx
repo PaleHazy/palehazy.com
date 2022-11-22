@@ -1,7 +1,7 @@
 import { useColorProvider } from 'contexts/Color';
 import { getSession } from 'next-auth/react';
 import { useEffect, useRef } from 'react';
-import { kittyBase64 } from './kitty';
+
 
 function calculateRelativeBrightness(red: number, green: number, blue: number) {
     return (
@@ -21,19 +21,21 @@ const Canvas = (props: any) => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const particlesArray: any[] = [];
-        const numberOfParticles = 5000;
+        const numberOfParticles = 3500;
         const mappedImage: any[] = [];
         let animationFrameId: number;
         if (canvas) {
             const img = new Image();
-            img.src = kittyBase64;
+            img.src = "/images/palehazy-logo.png"
             const ctx = canvas.getContext('2d');
             
+
+
             ctx!.clearRect(0, 0, canvas.width, canvas.height);
 
             img.onload = () => {
-                canvas.width = img.width;
-                canvas.height = img.height;
+                // canvas.width = img.width;
+                // canvas.height = img.height;
                 ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
                 const pixels = ctx?.getImageData(
                     0,
@@ -74,10 +76,10 @@ const Canvas = (props: any) => {
                     angle: number;
                     constructor() {
                         this.x = Math.random() * canvas!.width; // 0.5 * 512
-                        this.y = 0;
+                        this.y = canvas!.height + (Math.random() * canvas!.height) - 50;
                         this.speed = 0;
                         this.velocity = Math.random() * 0.05;
-                        this.size = Math.random() * 1.5 + 1;
+                        this.size = Math.random() * 0.5 + 1;
                         this.position1 = Math.floor(this.y);
                         this.position2 = Math.floor(this.x);
                         this.angle = 0;
@@ -106,19 +108,24 @@ const Canvas = (props: any) => {
                         this.position2 = Math.floor(this.x);
                         // this.y += this.velocity + 0.5;
                         //is the brightness of the current pixel
-                        this.speed = this.brightness;
+                        this.speed = this.brightness / 2;
 
                         // let movement = (2.5 - this.speed) + this.velocity;
                         let movement =
-                            this.brightnessMovement(this.speed) + this.velocity;
+                            1 * Math.random();
                         // let speedFilter = this.speed > 1;
                         this.angle += this.speed / 50;
 
-                        this.y += movement + Math.sin(this.angle) * 1;
-                        this.x += movement + Math.cos(this.angle) * 2;
+                        this.y -= movement / 0.9;
 
-                        if (this.y >= canvas!.height) {
-                            this.y = 0;
+
+
+
+                      
+                        // this.x += movement / 2;
+
+                        if (this.y <= 0) {
+                            this.y = canvas!.height;
                             this.x = Math.random() * canvas!.width;
                         }
                         if (this.x >= canvas!.width) {
@@ -176,16 +183,32 @@ const Canvas = (props: any) => {
                         }
                         return `rgb(${rgb.red},${rgb.green},${rgb.blue})`;
                     }
+
+                    get particle () {
+                        return mappedImage?.[this.position1]?.[this.position2];
+                    }
+
+                    get red () {
+                        return this.particle?.[1];
+                    }
+
+                    get green () {
+                        return this.particle?.[2];
+                    }
+
+                    get blue () {
+                        return this.particle?.[3];
+                    }
+
                     draw() {
-                        const particle =
-                            mappedImage?.[this.position1]?.[this.position2];
-                        let red, green, blue;
-                        if (particle) {
-                            red = particle[1];
-                            green = particle[2];
-                            blue = particle[3];
-                            ctx!.fillStyle = this.filterColor(red, green, blue);
-                        }
+
+
+                        // if(this.red && this.red > Math.random() * 50 && this.green && this.green > Math.random()*150 && this.blue && this.blue < Math.random()*75) {
+                           
+                        //     ctx!.fillStyle = this.filterColor(0, 0, 0);
+                        // } else {
+                            ctx!.fillStyle = this.filterColor(this.red, this.green, this.blue);
+                        // }
                         ctx!.beginPath();
                         ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                         ctx!.fill();
@@ -203,11 +226,11 @@ const Canvas = (props: any) => {
                         ctx.globalAlpha = 0.05;
                         ctx.fillStyle = 'rgb(0,0,0)';
                         ctx.fillRect(0, 0, canvas.width, canvas.height);
-                        ctx.globalAlpha = 0.3;
-
+                        
+                        
                         for (let i = 0; i < particlesArray.length; i++) {
                             particlesArray[i].update();
-                            ctx.globalAlpha = particlesArray[i].speed * 0.5;
+                            ctx.globalAlpha = particlesArray[i].speed * 0.9;
                             particlesArray[i].draw();
                         }
                     }
@@ -215,16 +238,17 @@ const Canvas = (props: any) => {
                 };
                 animationFrameId = animate();
             };
-        }
-        return () => {
-            window.cancelAnimationFrame(animationFrameId)
+            return () => {
+                window.cancelAnimationFrame(animationFrameId)
+                ctx?.restore();
+            }
         }
     
     }, [cState.filter]);
     return (
         <canvas
-            height={473}
-            width={1024}
+            height={400}
+            width={400}
             ref={(r) => {
                 if (r) {
                     canvasRef.current = r;
@@ -235,3 +259,15 @@ const Canvas = (props: any) => {
 };
 
 export default Canvas;
+
+
+function deltaRgb (rgb1: number[], rgb2: number[]) {
+    const [ r1, g1, b1 ] = rgb1,
+          [ r2, g2, b2 ] = rgb2,
+          drp2 = Math.pow(r1 - r2, 2),
+          dgp2 = Math.pow(g1 - g2, 2),
+          dbp2 = Math.pow(b1 - b2, 2),
+          t = (r1 + r2) / 2
+  
+    return Math.sqrt(2 * drp2 + 4 * dgp2 + 3 * dbp2 + t * (drp2 - dbp2) / 256)
+  }
