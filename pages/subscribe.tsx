@@ -14,53 +14,68 @@ import {
     useStripe,
 } from '@stripe/react-stripe-js';
 import { SubscribeCard } from '@/components/SubscribeCard/SubscribeCard';
+import { server } from '../constants';
 
-const Donate: NextPage = (props: any) => {
+const Donate: NextPage<{ prices: any[] }> = (props) => {
     const { data, status } = useSession();
-    const [prices, setPrices] = useState<any[]>([]);
-
     const [succesful, setSuccesful] = useState(false);
     const [paymentProcessing, setPaymentProcessing] = useState(false);
     const elements = useElements();
     const stripe = useStripe();
-    useEffect(() => {
-        const fetchPrices = async () => {
-            const { prices } = await fetch('/api/prices').then((r) => r.json());
-            setPrices(prices);
-        };
-        fetchPrices();
-    }, []);
+    const router = useRouter();
+
     useEffect(() => {
         if (succesful === true) {
             setTimeout(() => {
                 setSuccesful(false);
-            }, 10000);
+            }, 25000);
         }
     }, [succesful]);
     return (
-        <main 
-            style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                height: "100vh",
-                width: "100vw",
-                padding: "0 20vw",
-            }}
+        <main
+            className={styles.page}
         >
-            {prices.sort((a,b) => a.unit_amount < b.unit_amount ? -1 : 1).map((price) => {
-                return (
-                    
+
+            <h1>Subscribe to a plan that best fits your use case</h1>
+            <div className={styles.cardContainer}>
+
+
+                {props.prices.sort((a, b) => a.unit_amount < b.unit_amount ? -1 : 1).map((price) => {
+                    console.log(price)
+                    const items = (price?.metadata?.bullets ?? "").split(',')
+                    const title = price?.metadata?.title
+
+                    return (
                         <SubscribeCard
                             key={price.id}
-                            items={["by yo shit over here"]}
-                            title={price.product.name}
+                            items={items}
+                            title={title}
                             amount={price.unit_amount / 100}
-                            priceId={price.id}
+                            onSubscribe={
+                                async () => {
+                                    console.log('priceId', price.id);
+                                    const res = await fetch('/api/create-subscription', {
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            priceId: price.id,
+                                        }),
+                                    });
+                                    console.log("res", res)
+                                    const { subscriptionId, clientSecret } = await res.json();
+                                    console.log(subscriptionId, clientSecret);
+                                    router.push({
+                                        query: {
+                                            subscriptionId,
+                                            clientSecret,
+                                        },
+                                        pathname: '/checkout',
+                                    });
+                                }}
                         />
-                    
-                );
-            })}
+
+                    );
+                })}
+            </div>
         </main>
     );
 };
@@ -69,9 +84,10 @@ const Donate: NextPage = (props: any) => {
 
 
 export async function getServerSideProps(ctx: any) {
+    const { prices } = await fetch(server + '/api/prices').then((r) => r.json());
     return {
         props: {
-            session: await getSession(ctx),
+            prices,
         },
     };
 }

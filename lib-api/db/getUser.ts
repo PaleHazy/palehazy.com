@@ -24,6 +24,7 @@ export async function userCollection(userMods: UserCollectionCallback) {
     return result;
 }
 
+// if not user create one
 export async function getDatabaseUser(userParams: DatabaseUser) {
     try {
         const mongoUser = await userCollection(async (userCollection) => {

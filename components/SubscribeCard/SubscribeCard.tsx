@@ -7,7 +7,7 @@ interface SubscribeCardProps {
     icon?: string;
     items: string[];
     amount: number;
-    priceId: string;
+    onSubscribe: () => void;
 }
 
 export function SubscribeCard(props: SubscribeCardProps) {
@@ -20,26 +20,7 @@ export function SubscribeCard(props: SubscribeCardProps) {
             <SubscribeCardBody items={props.items} />
             <SubscribeCardFooter
                 amount={props.amount}
-                priceId={props.priceId}
-                onSubscribe={async () => {
-                    console.log('priceId', props.priceId);
-                    const res = await fetch('/api/create-subscription', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            priceId: props.priceId,
-                        }),
-                    });
-                    console.log("res", res)
-                    const { subscriptionId, clientSecret } = await res.json();
-                    console.log(subscriptionId, clientSecret);
-                    router.push({
-                        query: {
-                            subscriptionId,
-                            clientSecret,
-                        },
-                        pathname: '/checkout',
-                    });
-                }}
+                onSubscribe={props.onSubscribe}
             />
         </div>
     );
@@ -67,7 +48,7 @@ function SubscribeCardBody(props: Pick<SubscribeCardProps, 'items'>) {
 }
 
 function SubscribeCardFooter(
-    props: Pick<SubscribeCardProps, 'amount' | 'priceId'> & {
+    props: Pick<SubscribeCardProps, 'amount'> & {
         onSubscribe: () => void;
     }
 ) {
