@@ -6,6 +6,18 @@
   background: rgb(104, 194, 84);
 
   padding: 10px;
+
+  border-radius: 5px;
+  box-shadow:
+    inset 0 0 50px #fff,      /* inner white */
+    inset 20px 0 80px rgb(93, 215, 72),   /* inner left magenta short */
+    inset -20px 0 80px rgb(81, 88, 190),  /* inner right cyan short */
+    inset 20px 0 300px rgb(93, 215, 72),  /* inner left magenta broad */
+    inset -20px 0 300px rgb(81, 88, 190), /* inner right cyan broad */
+    0 0 10px #fff,            /* outer white */
+    -4px 0 25px -2px rgb(93, 215, 72),        /* outer left magenta */
+    4px 0 25px -2px rgb(81, 88, 190);         /* outer right cyan */
+
 }
 
 .projectsContainer {

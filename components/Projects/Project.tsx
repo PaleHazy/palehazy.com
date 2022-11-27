@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import scss from './Project.module.scss';
+import style from './Project.module.scss';
 interface ProjectProps {
     name: string;
     description?: string;
@@ -8,7 +8,7 @@ interface ProjectProps {
 
 export function Project({ name, url, description }: ProjectProps) {
     return (
-        <div className={scss.project}>
+        <div className={style.project}>
           <h3>
 
             <a href={url} target="_blank" rel="noreferrer">
@@ -22,6 +22,14 @@ export function Project({ name, url, description }: ProjectProps) {
     );
 }
 
+function GlowBackground() {
+    return (
+        <div className={style.glowBackground}>
+            <div className={style.glowBackground__inner} />
+        </div>
+    );
+}
+
 export function ProjectsContainer({ children }: PropsWithChildren<any>) {
-    return <div className={scss.projectsContainer}>{children}</div>;
+    return <div className={style.projectsContainer}>{children}</div>;
 }
