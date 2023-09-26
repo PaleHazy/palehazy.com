@@ -16,15 +16,18 @@ const Home: NextPage = (props: any) => {
         <div className={styles.container}>
             <Head>
                 <title>palehazy</title>
-                <meta name="description" content="Javascript React Professional" />
+                <meta
+                    name="description"
+                    content="Javascript React Professional"
+                />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <main className={styles.main}>
                 <section className={styles.left}>
                     <ColorProvider>
-                    <Canvas />
-                    <ColorChoose/>
+                        <Canvas />
+                        <ColorChoose />
                     </ColorProvider>
                 </section>
 
@@ -59,14 +62,24 @@ const Home: NextPage = (props: any) => {
                         <h3>
                             Take a look at some websites I made for some people
                         </h3>
-                        <h3>
-                            ALL sites here are mobile responsive
-                        </h3>
-                        
-                        <a href='CGPresale/index.html' target="_blank">ChainGuard Presale</a>
-                        <a href='EELanding/index.html' target="_blank">EagleEye Landing</a>
-                        <a href='EEDapp/index.html' target="_blank">EagleEye Dapp</a>
-                        <a href='https://chainguard.online' target="_blank" rel="noreferrer">ChainGuard Dapp</a>
+                        <h3>ALL sites here are mobile responsive</h3>
+
+                        <a href="CGPresale/index.html" target="_blank">
+                            ChainGuard Presale
+                        </a>
+                        <a href="EELanding/index.html" target="_blank">
+                            EagleEye Landing
+                        </a>
+                        <a href="EEDapp/index.html" target="_blank">
+                            EagleEye Dapp
+                        </a>
+                        <a
+                            href="Chainguard/index.html"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            ChainGuard Dapp
+                        </a>
                     </div>
                 </section>
             </main>
@@ -78,13 +91,19 @@ const Home: NextPage = (props: any) => {
     );
 };
 const ColorChoose = () => {
-    const [s,d] = useColorProvider()
-    return <div className={styles.colorPicker}>
-    <button onClick={() => {
-        d({type: "SET_FILTER", payload: "blue"})
-    }}>Change Color</button>
-    </div>
-    }
+    const [s, d] = useColorProvider();
+    return (
+        <div className={styles.colorPicker}>
+            <button
+                onClick={() => {
+                    d({ type: 'SET_FILTER', payload: 'blue' });
+                }}
+            >
+                Change Color
+            </button>
+        </div>
+    );
+};
 export async function getServerSideProps(ctx: any) {
     return {
         props: {

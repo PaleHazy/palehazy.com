@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[187],{9187:function(e,r,t){t.r(r);var u=t(5893),l=t(7044);let n=(0,l.AX)("RPC");r.default=e=>{let{children:r,getLibrary:t}=e;return(0,u.jsx)(n,{getLibrary:t,children:r})}}}]);
