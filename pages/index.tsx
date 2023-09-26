@@ -73,11 +73,7 @@ const Home: NextPage = (props: any) => {
                         <a href="EEDapp/index.html" target="_blank">
                             EagleEye Dapp
                         </a>
-                        <a
-                            href="Chainguard/index.html"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
+                        <a href="Chainguard/index.html" target="_blank">
                             ChainGuard Dapp
                         </a>
                     </div>
